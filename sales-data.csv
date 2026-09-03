@@ -1,0 +1,21 @@
+Department,Quarter,Revenue,Product,Customer,Shipping_Mode,Shipping_Delay,Order_Status
+Technology,Q1,12000,Laptop,Customer 1,Standard,2,Completed
+Technology,Q2,18500,Monitor,Customer 2,Express,1,Completed
+Technology,Q3,16000,Laptop,Customer 3,Standard,4,Completed
+Technology,Q4,24000,Printer,Customer 4,Express,2,Completed
+Furniture,Q1,9000,Chair,Customer 5,Standard,3,Completed
+Furniture,Q2,15500,Desk,Customer 6,Standard,5,Completed
+Furniture,Q3,12000,Sofa,Customer 7,Express,2,Completed
+Furniture,Q4,18000,Desk,Customer 8,Standard,6,Completed
+Office Supplies,Q1,7000,Paper,Customer 9,Standard,1,Completed
+Office Supplies,Q2,11500,Pen,Customer 10,Express,2,Completed
+Office Supplies,Q3,8500,Paper,Customer 11,Standard,3,Completed
+Office Supplies,Q4,12500,Printer Ink,Customer 12,Express,1,Completed
+Clothing,Q1,5000,Shirt,Customer 13,Standard,2,Completed
+Clothing,Q2,7500,Shoes,Customer 14,Express,3,Completed
+Clothing,Q3,6500,Jacket,Customer 15,Standard,4,Completed
+Clothing,Q4,9000,Shoes,Customer 16,Express,2,Completed
+Technology,Q4,14000,Laptop,Customer 17,Standard,3,Cancelled
+Furniture,Q3,8000,Chair,Customer 18,Standard,7,Completed
+Office Supplies,Q4,6000,Paper,Customer 19,Express,5,Cancelled
+Clothing,Q4,5500,Shirt,Customer 20,Standard,2,Completed
