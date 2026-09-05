@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sales Data Analysis</title>
+    <title>Sales Data Analysis | Roshan</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,107 +14,91 @@
 <body>
 
     <!-- NAVIGATION -->
-    <div class="nav-links">
+    <nav class="navbar">
 
-    <a href="../index.html">Portfolio</a>
+        <div class="logo">
+            📊 Sales Analytics
+        </div>
 
-    <a href="#overview">Overview</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#analysis">Analysis</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
 
-    <a href="#charts">Charts</a>
-
-    <a href="#sql">SQL</a>
-
-    <a href="#analysis">Analysis</a>
-
-    <a href="#insights">Insights</a>
-
-</div>
+    </nav>
 
 
     <!-- HERO SECTION -->
-    <section class="hero">
+    <section id="home" class="hero">
 
-        <p class="welcome">
-            📈 Data Analysis Project
-        </p>
+        <div class="hero-content">
 
-        <h1>
-            Sales Data Analysis
-        </h1>
+            <p class="small-title">
+                DATA ANALYTICS PROJECT
+            </p>
 
-        <h2>
-            SQL • Excel • Power BI • Data Analytics
-        </h2>
+            <h1>
+                Sales Data<br>
+                <span>Analysis</span>
+            </h1>
 
-        <p>
-            An interactive sales analysis project designed to
-            explore customer behavior, revenue, products,
-            orders, shipping performance, and business insights.
-        </p>
+            <p class="hero-text">
+                Turning raw sales data into meaningful business
+                insights using Python, Pandas, SQL, Excel and Power BI.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#analysis" class="btn primary">
+                    View Analysis
+                </a>
+
+                <a href="https://github.com/startupmail69-ship-it/sales-data-analysis"
+                   class="btn secondary"
+                   target="_blank">
+                    GitHub Project
+                </a>
+
+            </div>
+
+        </div>
 
     </section>
 
 
-    <!-- OVERVIEW -->
-    <section id="overview" class="section">
+    <!-- ABOUT PROJECT -->
+    <section class="section">
+
+        <p class="section-label">
+            ABOUT THE PROJECT
+        </p>
 
         <h2>
-            Project Overview
+            From Raw Data to Insights
         </h2>
 
-        <p>
-            This project analyzes sales data to identify
-            important business trends and performance metrics.
-            The analysis uses SQL, Excel, and Power BI to
-            transform raw data into meaningful insights.
+        <p class="section-description">
+
+            This project explores sales data to identify revenue
+            trends, high-performing categories, sales representatives,
+            regional performance and other important business insights.
+
         </p>
 
     </section>
 
 
     <!-- ANALYSIS CARDS -->
-     <!-- KEY METRICS -->
-<section class="section metrics-section">
-
-    <h2>Sales Performance Dashboard</h2>
-
-    <div class="metrics">
-
-        <div class="metric-card">
-            <div class="metric-icon">💰</div>
-            <h3>Total Revenue</h3>
-            <p class="metric-value">₹ --</p>
-            <span>Overall sales revenue</span>
-        </div>
-
-        <div class="metric-card">
-            <div class="metric-icon">📦</div>
-            <h3>Total Orders</h3>
-            <p class="metric-value">--</p>
-            <span>Total number of orders</span>
-        </div>
-
-        <div class="metric-card">
-            <div class="metric-icon">👥</div>
-            <h3>Total Customers</h3>
-            <p class="metric-value">--</p>
-            <span>Unique customers</span>
-        </div>
-
-        <div class="metric-card">
-            <div class="metric-icon">🚚</div>
-            <h3>Shipping Delay</h3>
-            <p class="metric-value">-- Days</p>
-            <span>Average shipping delay</span>
-        </div>
-
-    </div>
-
-</section>
     <section id="analysis" class="section">
 
+        <p class="section-label">
+            WHAT I ANALYZED
+        </p>
+
         <h2>
-            What I Analyzed
+            Sales Analysis
         </h2>
 
         <div class="cards">
@@ -122,36 +107,38 @@
                 <div class="icon">💰</div>
                 <h3>Revenue Analysis</h3>
                 <p>
-                    Analyze revenue by department,
-                    quarter, product, and category.
+                    Analyze total revenue and identify
+                    high-performing products and categories.
                 </p>
             </div>
 
-            <div class="card">
-                <div class="icon">👥</div>
-                <h3>Customer Analysis</h3>
-                <p>
-                    Identify customer ordering behavior,
-                    top customers, and inactive customers.
-                </p>
-            </div>
 
             <div class="card">
                 <div class="icon">📦</div>
-                <h3>Product Analysis</h3>
+                <h3>Order Analysis</h3>
                 <p>
-                    Find top-selling products,
-                    highest-revenue products, and
-                    products with no orders.
+                    Explore order volume, sales trends
+                    and transaction performance.
                 </p>
             </div>
 
+
             <div class="card">
-                <div class="icon">🚚</div>
-                <h3>Shipping Analysis</h3>
+                <div class="icon">🌍</div>
+                <h3>Regional Analysis</h3>
                 <p>
-                    Analyze shipping modes, delays,
-                    and delayed-order percentages.
+                    Compare sales performance across
+                    different regions.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">👤</div>
+                <h3>Sales Representative</h3>
+                <p>
+                    Identify top-performing sales
+                    representatives.
                 </p>
             </div>
 
@@ -159,494 +146,59 @@
 
     </section>
 
-<!-- SQL ANALYSIS RESULTS -->
-<section id="sql-results" class="section">
 
-    <h2>SQL Analysis Results</h2>
+    <!-- SKILLS -->
+    <section id="skills" class="section skills-section">
 
-    <p class="section-description">
-        Key business questions answered using SQL queries
-        and sales transaction data.
-    </p>
+        <p class="section-label">
+            TOOLS & TECHNOLOGIES
+        </p>
 
-    <div class="results-grid">
+        <h2>
+            Skills Used
+        </h2>
 
-        <div class="result-card">
-            <span class="result-number">01</span>
-            <h3>Revenue by Department</h3>
-            <p>
-                Analyzed revenue across departments and
-                quarters to identify the strongest-performing
-                business areas.
-            </p>
-            <div class="result-tag">
-                SQL Analysis
-            </div>
-        </div>
+        <div class="skills">
 
-
-        <div class="result-card">
-            <span class="result-number">02</span>
-            <h3>Top 5 Products</h3>
-            <p>
-                Identified the five products generating the
-                highest revenue based on order transactions.
-            </p>
-            <div class="result-tag">
-                Product Analysis
-            </div>
-        </div>
-
-
-        <div class="result-card">
-            <span class="result-number">03</span>
-            <h3>Top Customers</h3>
-            <p>
-                Identified the top customers based on their
-                number of completed orders.
-            </p>
-            <div class="result-tag">
-                Customer Analysis
-            </div>
-        </div>
-
-
-        <div class="result-card">
-            <span class="result-number">04</span>
-            <h3>Shipping Performance</h3>
-            <p>
-                Compared shipping modes using average delay
-                and delayed-order proportions.
-            </p>
-            <div class="result-tag">
-                Logistics Analysis
-            </div>
-        </div>
-
-
-        <div class="result-card">
-            <span class="result-number">05</span>
-            <h3>Inactive Customers</h3>
-            <p>
-                Identified customers who never placed an order
-                to understand potential customer inactivity.
-            </p>
-            <div class="result-tag">
-                Customer Behavior
-            </div>
-        </div>
-
-
-        <div class="result-card">
-            <span class="result-number">06</span>
-            <h3>Products Never Ordered</h3>
-            <p>
-                Found products that had no associated orders
-                using SQL joins and filtering.
-            </p>
-            <div class="result-tag">
-                Inventory Analysis
-            </div>
-        </div>
-
-
-        <div class="result-card">
-            <span class="result-number">07</span>
-            <h3>Order Cancellation</h3>
-            <p>
-                Calculated the percentage of cancelled orders
-                across different states.
-            </p>
-            <div class="result-tag">
-                Order Analysis
-            </div>
-        </div>
-
-
-        <div class="result-card">
-            <span class="result-number">08</span>
-            <h3>Revenue Categories</h3>
-            <p>
-                Categorized order-item revenue into high,
-                medium, and low revenue segments.
-            </p>
-            <div class="result-tag">
-                Revenue Analysis
-            </div>
-        </div>
-
-    </div>
-<!-- DATA VISUALIZATION -->
-<section id="charts" class="section">
-
-    <h2>Data Visualizations</h2>
-
-    <p class="section-description">
-        Interactive charts showing important sales and
-        business performance trends.
-    </p>
-
-    <div class="charts-grid">
-
-        <div class="chart-card">
-            <h3>📈 Revenue by Quarter</h3>
-            <canvas id="revenueQuarterChart"></canvas>
-        </div>
-
-        <div class="chart-card">
-            <h3>📊 Revenue by Department</h3>
-            <canvas id="departmentRevenueChart"></canvas>
-        </div>
-
-        <div class="chart-card">
-            <h3>🏆 Top 5 Products</h3>
-            <canvas id="topProductsChart"></canvas>
-        </div>
-
-        <div class="chart-card">
-            <h3>🚚 Shipping Performance</h3>
-            <canvas id="shippingChart"></canvas>
-        </div>
-
-    </div>
-<!-- SQL QUERIES -->
-<section id="sql" class="section">
-
-    <h2>SQL Queries Used</h2>
-
-    <p class="section-description">
-        Business questions solved using SQL for sales,
-        customer, product, and shipping analysis.
-    </p>
-
-    <div class="sql-container">
-
-        <div class="sql-card">
-            <h3>💰 Revenue by Department & Quarter</h3>
-
-            <pre><code>
-SELECT
-    department,
-    quarter,
-    SUM(revenue) AS total_revenue
-FROM sales_data
-GROUP BY department, quarter
-ORDER BY total_revenue DESC;
-            </code></pre>
-        </div>
-
-
-        <div class="sql-card">
-            <h3>🏆 Top 5 Products by Revenue</h3>
-
-            <pre><code>
-SELECT
-    product,
-    SUM(revenue) AS total_revenue
-FROM sales_data
-GROUP BY product
-ORDER BY total_revenue DESC
-LIMIT 5;
-            </code></pre>
-        </div>
-
-
-        <div class="sql-card">
-            <h3>👥 Top 3 Customers</h3>
-
-            <pre><code>
-SELECT
-    customer,
-    COUNT(*) AS completed_orders
-FROM sales_data
-WHERE order_status = 'Completed'
-GROUP BY customer
-ORDER BY completed_orders DESC
-LIMIT 3;
-            </code></pre>
-        </div>
-
-
-        <div class="sql-card">
-            <h3>🚚 Average Shipping Delay</h3>
-
-            <pre><code>
-SELECT
-    shipping_mode,
-    AVG(shipping_delay) AS avg_delay
-FROM sales_data
-GROUP BY shipping_mode;
-            </code></pre>
-        </div>
-
-
-        <div class="sql-card">
-            <h3>❌ Order Cancellation Percentage</h3>
-
-            <pre><code>
-SELECT
-    100.0 *
-    SUM(
-        CASE
-            WHEN order_status = 'Cancelled'
-            THEN 1 ELSE 0
-        END
-    ) / COUNT(*) AS cancellation_percentage
-FROM sales_data;
-            </code></pre>
-        </div>
-
-
-        <div class="sql-card">
-            <h3>📦 Products Never Ordered</h3>
-
-            <pre><code>
-SELECT
-    p.product_name
-FROM product_info p
-LEFT JOIN ordered_items o
-    ON p.product_id = o.product_id
-WHERE o.product_id IS NULL;
-            </code></pre>
-        </div>
-
-    </div>
-
-</section>
-</section>
-
-    <!-- INSIGHTS -->
-   <!-- INSIGHTS -->
-<section id="insights" class="section">
-
-    <h2>Key Business Insights</h2>
-
-    <p class="section-description">
-        Important findings generated from the sales data.
-    </p>
-
-    <div class="insights">
-
-        <div class="insight">
-            <h3>💰 Revenue Performance</h3>
-            <p id="revenueInsight">
-                Calculating revenue performance...
-            </p>
-        </div>
-
-        <div class="insight">
-            <h3>🏆 Top Product</h3>
-            <p id="productInsight">
-                Calculating top product...
-            </p>
-        </div>
-
-        <div class="insight">
-            <h3>🚚 Shipping Performance</h3>
-            <p id="shippingInsight">
-                Calculating shipping performance...
-            </p>
-        </div>
-
-        <div class="insight">
-            <h3>❌ Order Cancellation</h3>
-            <p id="cancellationInsight">
-                Calculating cancellation rate...
-            </p>
-        </div>
-
-    </div>
-<!-- TOOLS & SKILLS -->
-<section class="section skills-section">
-
-    <h2>Tools & Technologies</h2>
-
-    <p class="section-description">
-        Technologies and skills used to complete this
-        sales data analysis project.
-    </p>
-
-    <div class="skills">
-
-        <div class="skill">
-            <div class="skill-icon">🗄️</div>
-            <h3>SQL</h3>
-            <p>
-                Data querying, filtering, aggregation,
-                joins, grouping, and business analysis.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">📊</div>
-            <h3>Excel</h3>
-            <p>
-                Data cleaning, analysis, formulas,
-                Pivot Tables, and reporting.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">📈</div>
-            <h3>Power BI</h3>
-            <p>
-                Interactive dashboards, KPIs,
-                visualizations, and business insights.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">🐍</div>
-            <h3>Python</h3>
-            <p>
-                Data processing, automation,
-                analysis, and visualization.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">🌐</div>
-            <h3>HTML & CSS</h3>
-            <p>
-                Responsive portfolio design and
-                interactive project presentation.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">⚡</div>
-            <h3>JavaScript</h3>
-            <p>
-                Dynamic dashboard calculations,
-                CSV processing, and interactive charts.
-            </p>
-        </div>
-
-    </div>
-
-
-</section>
-<!-- PROJECT SUMMARY -->
-<section class="section project-summary">
-
-    <h2>Project Summary</h2>
-
-    <p class="section-description">
-        A complete sales analytics project focused on
-        transforming raw transaction data into meaningful
-        business insights.
-    </p>
-
-    <div class="summary-content">
-
-        <div class="summary-box">
-
-            <h3>🎯 Business Problem</h3>
-
-            <p>
-                Businesses generate large amounts of sales
-                data, but raw data alone does not provide
-                clear insights into revenue, customers,
-                products, and shipping performance.
-            </p>
+            <span>Python</span>
+            <span>Pandas</span>
+            <span>SQL</span>
+            <span>Excel</span>
+            <span>Power BI</span>
+            <span>Data Visualization</span>
 
         </div>
 
-
-        <div class="summary-box">
-
-            <h3>💡 My Approach</h3>
-
-            <p>
-                I analyzed sales transactions using SQL,
-                calculated important performance metrics,
-                created visualizations, and presented the
-                findings through an interactive dashboard.
-            </p>
-
-        </div>
+    </section>
 
 
-        <div class="summary-box">
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
 
-            <h3>📊 Outcome</h3>
+        <p class="section-label">
+            CONTACT
+        </p>
 
-            <p>
-                The analysis helps identify revenue trends,
-                high-performing products, customer behavior,
-                shipping delays, and order cancellations.
-            </p>
+        <h2>
+            Let's Connect
+        </h2>
 
-        </div>
+        <p>
+            Interested in data analytics, business intelligence
+            and technology.
+        </p>
 
-    </div>
+        <a href="https://github.com/startupmail69-ship-it"
+           target="_blank"
+           class="btn primary">
 
+            Visit My GitHub
 
-    <!-- BUSINESS QUESTIONS -->
-
-    <div class="questions">
-
-        <h3>🔍 Business Questions Answered</h3>
-
-        <div class="question-list">
-
-            <div class="question">
-                <span>01</span>
-                Which department generates the highest revenue?
-            </div>
-
-            <div class="question">
-                <span>02</span>
-                Which products generate the most revenue?
-            </div>
-
-            <div class="question">
-                <span>03</span>
-                Which customers have the most completed orders?
-            </div>
-
-            <div class="question">
-                <span>04</span>
-                Which shipping mode has the highest delay?
-            </div>
-
-            <div class="question">
-                <span>05</span>
-                What percentage of orders are delayed?
-            </div>
-
-            <div class="question">
-                <span>06</span>
-                What percentage of orders are cancelled?
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- GITHUB BUTTON -->
-
-    <div class="project-buttons">
-
-        <a
-            href="https://github.com/"
-            target="_blank"
-            class="github-button"
-        >
-            💻 View Project on GitHub
         </a>
 
-        <a
-            href="../index.html"
-            class="portfolio-button"
-        >
-            ← Back to Portfolio
-        </a>
+    </section>
 
-    </div>
 
-</section>
     <!-- FOOTER -->
     <footer>
 
@@ -657,9 +209,7 @@ WHERE o.product_id IS NULL;
     </footer>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="script.js"></script>
-
 </body>
 
 </html>
+```
