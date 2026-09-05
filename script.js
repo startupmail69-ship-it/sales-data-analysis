@@ -1,523 +1,175 @@
-/* =========================================
-   SALES DATA ANALYSIS DASHBOARD
-========================================= */
+```javascript
+// ===============================
+// LOAD SALES DATA
+// ===============================
 
 fetch("sales-data.csv")
     .then(response => {
-
         if (!response.ok) {
-            throw new Error("Unable to load sales-data.csv");
+            throw new Error("CSV file could not be loaded");
         }
 
         return response.text();
     })
 
-    .then(csv => {
+    .then(data => {
 
-        /* =========================================
-           READ CSV DATA
-        ========================================= */
+        // Convert CSV into rows
+        const rows = data.trim().split("\n");
 
-        const rows = csv.trim().split("\n");
+        // First row = column headers
+        const headers = rows[0]
+            .split(",")
+            .map(header => header.trim().toLowerCase());
 
-        const headers = rows[0].split(",");
-
-        const data = rows.slice(1).map(row => {
+        // Convert remaining rows into objects
+        const sales = rows.slice(1).map(row => {
 
             const values = row.split(",");
 
-            let item = {};
+            let record = {};
 
             headers.forEach((header, index) => {
-                item[header.trim()] =
-                    values[index]?.trim();
+                record[header] = values[index]
+                    ? values[index].trim()
+                    : "";
             });
 
-            item.Revenue =
-                Number(item.Revenue);
-
-            item.Shipping_Delay =
-                Number(item.Shipping_Delay);
-
-            return item;
+            return record;
         });
 
 
-        /* =========================================
-           KPI CALCULATIONS
-        ========================================= */
+        console.log("Sales data loaded:", sales);
 
-        const totalRevenue = data.reduce(
-            (sum, item) => sum + item.Revenue,
-            0
+
+        // ===============================
+        // FIND IMPORTANT COLUMNS
+        // ===============================
+
+        const revenueColumn = headers.find(column =>
+            column.includes("revenue") ||
+            column.includes("sales") ||
+            column.includes("amount")
         );
 
-        const totalOrders = data.length;
+        const orderColumn = headers.find(column =>
+            column.includes("order")
+        );
 
-        const uniqueCustomers =
-            new Set(
-                data.map(item => item.Customer)
-            ).size;
+        const customerColumn = headers.find(column =>
+            column.includes("customer")
+        );
 
-        const averageDelay =
-            data.reduce(
-                (sum, item) =>
-                    sum + item.Shipping_Delay,
-                0
-            ) / data.length;
+        const delayColumn = headers.find(column =>
+            column.includes("delay")
+        );
 
 
-        /* =========================================
-           UPDATE KPI CARDS
-        ========================================= */
+        // ===============================
+        // TOTAL REVENUE
+        // ===============================
 
-        const metricValues =
-            document.querySelectorAll(
-                ".metric-value"
-            );
+        let totalRevenue = 0;
 
-        if (metricValues.length >= 4) {
+        if (revenueColumn) {
 
-            metricValues[0].textContent =
-                "₹ " +
-                totalRevenue.toLocaleString("en-IN");
+            totalRevenue = sales.reduce((total, sale) => {
 
-            metricValues[1].textContent =
-                totalOrders;
+                const value = parseFloat(
+                    sale[revenueColumn]
+                        ?.replace(/[₹,$]/g, "")
+                );
 
-            metricValues[2].textContent =
-                uniqueCustomers;
+                return total + (isNaN(value) ? 0 : value);
 
-            metricValues[3].textContent =
-                averageDelay.toFixed(1) +
-                " Days";
+            }, 0);
         }
 
 
-        /* =========================================
-           REVENUE BY QUARTER
-        ========================================= */
+        // ===============================
+        // TOTAL ORDERS
+        // ===============================
 
-        const quarters = [
-            "Q1",
-            "Q2",
-            "Q3",
-            "Q4"
-        ];
+        let totalOrders = sales.length;
 
-        const quarterRevenue =
-            quarters.map(quarter => {
 
-                return data
-                    .filter(
-                        item =>
-                            item.Quarter === quarter
-                    )
-                    .reduce(
-                        (sum, item) =>
-                            sum + item.Revenue,
-                        0
-                    );
+        // ===============================
+        // UNIQUE CUSTOMERS
+        // ===============================
+
+        let uniqueCustomers = 0;
+
+        if (customerColumn) {
+
+            const customers = new Set(
+                sales
+                    .map(sale => sale[customerColumn])
+                    .filter(value => value)
+            );
+
+            uniqueCustomers = customers.size;
+        }
+
+
+        // ===============================
+        // AVERAGE SHIPPING DELAY
+        // ===============================
+
+        let averageDelay = 0;
+
+        if (delayColumn) {
+
+            const delays = sales
+                .map(sale => parseFloat(sale[delayColumn]))
+                .filter(value => !isNaN(value));
+
+            if (delays.length > 0) {
+
+                averageDelay =
+                    delays.reduce((a, b) => a + b, 0)
+                    / delays.length;
+            }
+        }
+
+
+        // ===============================
+        // DISPLAY KPIs
+        // ===============================
+
+        document.getElementById("totalRevenue").textContent =
+            "₹" + totalRevenue.toLocaleString("en-IN", {
+                maximumFractionDigits: 0
             });
 
+        document.getElementById("totalOrders").textContent =
+            totalOrders.toLocaleString("en-IN");
 
-        new Chart(
-            document.getElementById(
-                "revenueQuarterChart"
-            ),
-            {
-                type: "line",
+        document.getElementById("uniqueCustomers").textContent =
+            uniqueCustomers.toLocaleString("en-IN");
 
-                data: {
+        document.getElementById("averageDelay").textContent =
+            averageDelay.toFixed(1) + " days";
 
-                    labels: quarters,
 
-                    datasets: [{
+        // ===============================
+        // CONSOLE INFORMATION
+        // ===============================
 
-                        label: "Revenue",
-
-                        data: quarterRevenue,
-
-                        borderWidth: 3,
-
-                        tension: 0.4,
-
-                        fill: false
-                    }]
-                },
-
-                options: {
-                    responsive: true
-                }
-            }
-        );
-
-
-        /* =========================================
-           REVENUE BY DEPARTMENT
-        ========================================= */
-
-        const departments = [
-            ...new Set(
-                data.map(
-                    item => item.Department
-                )
-            )
-        ];
-
-        const departmentRevenue =
-            departments.map(department => {
-
-                return data
-                    .filter(
-                        item =>
-                            item.Department ===
-                            department
-                    )
-                    .reduce(
-                        (sum, item) =>
-                            sum + item.Revenue,
-                        0
-                    );
-            });
-
-
-        new Chart(
-            document.getElementById(
-                "departmentRevenueChart"
-            ),
-            {
-                type: "bar",
-
-                data: {
-
-                    labels: departments,
-
-                    datasets: [{
-
-                        label: "Revenue",
-
-                        data:
-                            departmentRevenue,
-
-                        borderWidth: 1
-                    }]
-                },
-
-                options: {
-
-                    responsive: true,
-
-                    scales: {
-
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            }
-        );
-
-
-        /* =========================================
-           TOP 5 PRODUCTS
-        ========================================= */
-
-        const products = {};
-
-        data.forEach(item => {
-
-            if (!products[item.Product]) {
-
-                products[item.Product] = 0;
-            }
-
-            products[item.Product] +=
-                item.Revenue;
-        });
-
-
-        const topProducts =
-            Object.entries(products)
-                .sort(
-                    (a, b) => b[1] - a[1]
-                )
-                .slice(0, 5);
-
-
-        new Chart(
-            document.getElementById(
-                "topProductsChart"
-            ),
-            {
-                type: "bar",
-
-                data: {
-
-                    labels:
-                        topProducts.map(
-                            item => item[0]
-                        ),
-
-                    datasets: [{
-
-                        label: "Revenue",
-
-                        data:
-                            topProducts.map(
-                                item => item[1]
-                            ),
-
-                        borderWidth: 1
-                    }]
-                },
-
-                options: {
-
-                    indexAxis: "y",
-
-                    responsive: true
-                }
-            }
-        );
-
-
-        /* =========================================
-           SHIPPING PERFORMANCE
-        ========================================= */
-
-        const onTimeOrders =
-            data.filter(
-                item =>
-                    item.Shipping_Delay <= 3
-            ).length;
-
-        const delayedOrders =
-            data.filter(
-                item =>
-                    item.Shipping_Delay > 3
-            ).length;
-
-
-        new Chart(
-            document.getElementById(
-                "shippingChart"
-            ),
-            {
-                type: "doughnut",
-
-                data: {
-
-                    labels: [
-                        "On Time",
-                        "Delayed"
-                    ],
-
-                    datasets: [{
-
-                        data: [
-                            onTimeOrders,
-                            delayedOrders
-                        ],
-
-                        borderWidth: 2
-                    }]
-                },
-
-                options: {
-
-                    responsive: true,
-
-                    plugins: {
-
-                        legend: {
-                            position: "bottom"
-                        }
-                    }
-                }
-            }
-        );
-
-
-        /* =========================================
-           BUSINESS INSIGHTS
-        ========================================= */
-
-
-        /* Highest Revenue Department */
-
-        const departmentTotals = {};
-
-        data.forEach(item => {
-
-            if (
-                !departmentTotals[
-                    item.Department
-                ]
-            ) {
-
-                departmentTotals[
-                    item.Department
-                ] = 0;
-            }
-
-            departmentTotals[
-                item.Department
-            ] += item.Revenue;
-
-        });
-
-
-        const bestDepartment =
-            Object.entries(
-                departmentTotals
-            )
-                .sort(
-                    (a, b) => b[1] - a[1]
-                )[0];
-
-
-        /* =========================================
-           TOP PRODUCT
-        ========================================= */
-
-        const productTotals = {};
-
-        data.forEach(item => {
-
-            if (
-                !productTotals[item.Product]
-            ) {
-
-                productTotals[
-                    item.Product
-                ] = 0;
-            }
-
-            productTotals[
-                item.Product
-            ] += item.Revenue;
-
-        });
-
-
-        const bestProduct =
-            Object.entries(
-                productTotals
-            )
-                .sort(
-                    (a, b) => b[1] - a[1]
-                )[0];
-
-
-        /* =========================================
-           SHIPPING DELAY %
-        ========================================= */
-
-        const delayedPercentage =
-            (
-                delayedOrders /
-                data.length
-            ) * 100;
-
-
-        /* =========================================
-           CANCELLATION %
-        ========================================= */
-
-        const cancelledOrders =
-            data.filter(
-                item =>
-                    item.Order_Status ===
-                    "Cancelled"
-            ).length;
-
-
-        const cancellationPercentage =
-            (
-                cancelledOrders /
-                data.length
-            ) * 100;
-
-
-        /* =========================================
-           DISPLAY BUSINESS INSIGHTS
-        ========================================= */
-
-        const revenueInsight =
-            document.getElementById(
-                "revenueInsight"
-            );
-
-        if (revenueInsight) {
-
-            revenueInsight.textContent =
-                `${bestDepartment[0]} generated the highest revenue with ₹${bestDepartment[1].toLocaleString("en-IN")}.`;
-        }
-
-
-        const productInsight =
-            document.getElementById(
-                "productInsight"
-            );
-
-        if (productInsight) {
-
-            productInsight.textContent =
-                `${bestProduct[0]} generated the highest product revenue with ₹${bestProduct[1].toLocaleString("en-IN")}.`;
-        }
-
-
-        const shippingInsight =
-            document.getElementById(
-                "shippingInsight"
-            );
-
-        if (shippingInsight) {
-
-            shippingInsight.textContent =
-                `${delayedPercentage.toFixed(1)}% of orders experienced a shipping delay greater than 3 days.`;
-        }
-
-
-        const cancellationInsight =
-            document.getElementById(
-                "cancellationInsight"
-            );
-
-        if (cancellationInsight) {
-
-            cancellationInsight.textContent =
-                `${cancellationPercentage.toFixed(1)}% of orders were cancelled.`;
-        }
-
-
-        console.log(
-            "Sales data loaded successfully!"
-        );
-
-        console.log(
-            "Total Revenue:",
-            totalRevenue
-        );
-
-        console.log(
-            "Total Orders:",
-            totalOrders
-        );
-
-        console.log(
-            "Total Customers:",
-            uniqueCustomers
-        );
+        console.log("Total Revenue:", totalRevenue);
+        console.log("Total Orders:", totalOrders);
+        console.log("Unique Customers:", uniqueCustomers);
+        console.log("Average Delay:", averageDelay);
 
     })
 
+
+    // ===============================
+    // ERROR HANDLING
+    // ===============================
+
     .catch(error => {
 
-        console.error(
-            "Error loading sales data:",
-            error
-        );
+        console.error("Dashboard error:", error);
 
     });
+```
