@@ -91,60 +91,111 @@
 
 
     <!-- ANALYSIS CARDS -->
-    <section id="analysis" class="section">
+   ```html
+<!-- SALES DASHBOARD -->
+<section id="dashboard" class="section dashboard-section">
 
-        <p class="section-label">
-            WHAT I ANALYZED
-        </p>
+    <p class="section-label">
+        LIVE DATA DASHBOARD
+    </p>
 
-        <h2>
-            Sales Analysis
-        </h2>
+    <h2>
+        Sales Overview
+    </h2>
 
-        <div class="cards">
-
-            <div class="card">
-                <div class="icon">💰</div>
-                <h3>Revenue Analysis</h3>
-                <p>
-                    Analyze total revenue and identify
-                    high-performing products and categories.
-                </p>
-            </div>
+    <p class="section-description">
+        Key performance indicators calculated directly from the sales dataset.
+    </p>
 
 
-            <div class="card">
-                <div class="icon">📦</div>
-                <h3>Order Analysis</h3>
-                <p>
-                    Explore order volume, sales trends
-                    and transaction performance.
-                </p>
-            </div>
+    <!-- KPI CARDS -->
+    <div class="kpi-grid">
 
-
-            <div class="card">
-                <div class="icon">🌍</div>
-                <h3>Regional Analysis</h3>
-                <p>
-                    Compare sales performance across
-                    different regions.
-                </p>
-            </div>
-
-
-            <div class="card">
-                <div class="icon">👤</div>
-                <h3>Sales Representative</h3>
-                <p>
-                    Identify top-performing sales
-                    representatives.
-                </p>
-            </div>
-
+        <div class="kpi-card">
+            <span class="kpi-icon">💰</span>
+            <p>Total Revenue</p>
+            <h3 id="totalRevenue">₹0</h3>
         </div>
 
-    </section>
+
+        <div class="kpi-card">
+            <span class="kpi-icon">📦</span>
+            <p>Total Orders</p>
+            <h3 id="totalOrders">0</h3>
+        </div>
+
+
+        <div class="kpi-card">
+            <span class="kpi-icon">👥</span>
+            <p>Unique Customers</p>
+            <h3 id="uniqueCustomers">0</h3>
+        </div>
+
+
+        <div class="kpi-card">
+            <span class="kpi-icon">⏱️</span>
+            <p>Average Shipping Delay</p>
+            <h3 id="averageDelay">0 days</h3>
+        </div>
+
+    </div>
+
+
+    <!-- ANALYSIS CARDS -->
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">💰</div>
+
+            <h3>Revenue Analysis</h3>
+
+            <p>
+                Analyze revenue by department,
+                quarter, product and category.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">📦</div>
+
+            <h3>Order Analysis</h3>
+
+            <p>
+                Analyze order volume, transaction
+                performance and shipping patterns.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🌍</div>
+
+            <h3>Regional Analysis</h3>
+
+            <p>
+                Compare sales performance across
+                different regions.
+            </p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">👤</div>
+
+            <h3>Sales Representative</h3>
+
+            <p>
+                Identify the top-performing
+                sales representatives.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+```
+
 
 
     <!-- SKILLS -->
