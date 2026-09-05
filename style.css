@@ -436,4 +436,57 @@ footer {
 
 }
 ```
+```css
+/* =========================
+   CHARTS
+========================= */
+
+.charts-section {
+    background: #f8fafc;
+}
+
+.charts-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+
+    margin-top: 45px;
+}
+
+.chart-card {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e5e7eb;
+
+    min-height: 380px;
+}
+
+.chart-card h3 {
+    margin-bottom: 25px;
+
+    font-size: 20px;
+}
+
+.chart-card canvas {
+    max-height: 300px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+```
+
 
