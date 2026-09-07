@@ -226,3 +226,20 @@ main {
 #salesTable td:nth-child(8) {
     font-weight: bold;
 }
+#downloadCSV {
+    align-self: end;
+    padding: 12px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#downloadCSV:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
