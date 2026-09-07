@@ -443,3 +443,79 @@ function updateTable(data) {
         tableBody.appendChild(row);
     });
 }
+document
+    .getElementById("downloadCSV")
+    .addEventListener("click", downloadCSV);
+
+function downloadCSV() {
+
+    const selectedDepartment =
+        document.getElementById("departmentFilter").value;
+
+    const selectedQuarter =
+        document.getElementById("quarterFilter").value;
+
+    const selectedShipping =
+        document.getElementById("shippingFilter").value;
+
+    const filteredData = salesData.filter(item => {
+
+        const departmentMatch =
+            selectedDepartment === "All" ||
+            item.Department === selectedDepartment;
+
+        const quarterMatch =
+            selectedQuarter === "All" ||
+            item.Quarter === selectedQuarter;
+
+        const shippingMatch =
+            selectedShipping === "All" ||
+            item.Shipping_Mode === selectedShipping;
+
+        return departmentMatch &&
+               quarterMatch &&
+               shippingMatch;
+    });
+
+    const headers = [
+        "Department",
+        "Quarter",
+        "Revenue",
+        "Product",
+        "Customer",
+        "Shipping_Mode",
+        "Shipping_Delay",
+        "Order_Status"
+    ];
+
+    const rows = filteredData.map(item => [
+        item.Department,
+        item.Quarter,
+        item.Revenue,
+        item.Product,
+        item.Customer,
+        item.Shipping_Mode,
+        item.Shipping_Delay,
+        item.Order_Status
+    ]);
+
+    const csvContent = [
+        headers.join(","),
+        ...rows.map(row => row.join(","))
+    ].join("\n");
+
+    const blob = new Blob([csvContent], {
+        type: "text/csv;charset=utf-8;"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "sales-report.csv";
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
