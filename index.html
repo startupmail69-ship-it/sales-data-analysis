@@ -1,370 +1,86 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sales Data Analysis | Roshan</title>
+```
+<title>Sales Data Analysis Dashboard</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-
-        <div class="logo">
-            📊 Sales Analytics
-        </div>
-
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#analysis">Analysis</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </div>
-
-    </nav>
-
-
-    <!-- HERO SECTION -->
-    <section id="home" class="hero">
-
-        <div class="hero-content">
-
-            <p class="small-title">
-                DATA ANALYTICS PROJECT
-            </p>
-
-            <h1>
-                Sales Data<br>
-                <span>Analysis</span>
-            </h1>
-
-            <p class="hero-text">
-                Turning raw sales data into meaningful business
-                insights using Python, Pandas, SQL, Excel and Power BI.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#analysis" class="btn primary">
-                    View Analysis
-                </a>
-
-                <a href="https://github.com/startupmail69-ship-it/sales-data-analysis"
-                   class="btn secondary"
-                   target="_blank">
-                    GitHub Project
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ABOUT PROJECT -->
-    <section class="section">
-
-        <p class="section-label">
-            ABOUT THE PROJECT
-        </p>
-
-        <h2>
-            From Raw Data to Insights
-        </h2>
-
-        <p class="section-description">
-
-            This project explores sales data to identify revenue
-            trends, high-performing categories, sales representatives,
-            regional performance and other important business insights.
-
-        </p>
-
-    </section>
-
-
-    <!-- ANALYSIS CARDS -->
-   ```html
-<!-- SALES DASHBOARD -->
-<section id="dashboard" class="section dashboard-section">
-
-    <p class="section-label">
-        LIVE DATA DASHBOARD
-    </p>
-
-    <h2>
-        Sales Overview
-    </h2>
-
-    <p class="section-description">
-        Key performance indicators calculated directly from the sales dataset.
-    </p>
-
-
-    <!-- KPI CARDS -->
-    <div class="kpi-grid">
-
-        <div class="kpi-card">
-            <span class="kpi-icon">💰</span>
-            <p>Total Revenue</p>
-            <h3 id="totalRevenue">₹0</h3>
-        </div>
-
-
-        <div class="kpi-card">
-            <span class="kpi-icon">📦</span>
-            <p>Total Orders</p>
-            <h3 id="totalOrders">0</h3>
-        </div>
-
-
-        <div class="kpi-card">
-            <span class="kpi-icon">👥</span>
-            <p>Unique Customers</p>
-            <h3 id="uniqueCustomers">0</h3>
-        </div>
-
-
-        <div class="kpi-card">
-            <span class="kpi-icon">⏱️</span>
-            <p>Average Shipping Delay</p>
-            <h3 id="averageDelay">0 days</h3>
-        </div>
-
-    </div>
-
-
-    <!-- ANALYSIS CARDS -->
-    <div class="cards">
-
-        <div class="card">
-            <div class="icon">💰</div>
-
-            <h3>Revenue Analysis</h3>
-
-            <p>
-                Analyze revenue by department,
-                quarter, product and category.
-            </p>
-        </div>
-
-
-        <div class="card">
-            <div class="icon">📦</div>
-
-            <h3>Order Analysis</h3>
-
-            <p>
-                Analyze order volume, transaction
-                performance and shipping patterns.
-            </p>
-        </div>
-
-
-        <div class="card">
-            <div class="icon">🌍</div>
-
-            <h3>Regional Analysis</h3>
-
-            <p>
-                Compare sales performance across
-                different regions.
-            </p>
-        </div>
-
-
-        <div class="card">
-            <div class="icon">👤</div>
-
-            <h3>Sales Representative</h3>
-
-            <p>
-                Identify the top-performing
-                sales representatives.
-            </p>
-        </div>
-
-    </div>
-
-</section>
 ```
+<header>
+    <h1>📊 Sales Data Analysis</h1>
+    <p>Interactive Sales Dashboard</p>
+</header>
 
+<main>
 
+    <section class="dashboard">
 
-    <!-- SKILLS -->
-    <section id="skills" class="section skills-section">
+        <div class="card">
+            <h3>Total Revenue</h3>
+            <p id="totalRevenue">₹0</p>
+        </div>
 
-        <p class="section-label">
-            TOOLS & TECHNOLOGIES
-        </p>
+        <div class="card">
+            <h3>Total Orders</h3>
+            <p id="totalOrders">0</p>
+        </div>
 
-        <h2>
-            Skills Used
-        </h2>
+        <div class="card">
+            <h3>Completed Orders</h3>
+            <p id="completedOrders">0</p>
+        </div>
 
-        <div class="skills">
+        <div class="card">
+            <h3>Cancelled Orders</h3>
+            <p id="cancelledOrders">0</p>
+        </div>
 
-            <span>Python</span>
-            <span>Pandas</span>
-            <span>SQL</span>
-            <span>Excel</span>
-            <span>Power BI</span>
-            <span>Data Visualization</span>
-
+        <div class="card">
+            <h3>Average Shipping Delay</h3>
+            <p id="averageDelay">0 days</p>
         </div>
 
     </section>
 
-```html
-<!-- CHARTS SECTION -->
-<section id="charts" class="section charts-section">
+    <section class="analysis">
 
-    <p class="section-label">
-        DATA VISUALIZATION
-    </p>
+        <h2>📈 Sales Analysis</h2>
 
-    <h2>
-        Sales Insights
-    </h2>
-
-    <p class="section-description">
-        Interactive visualizations showing important patterns
-        and performance across the sales dataset.
-    </p>
-
-
-    <div class="charts-grid">
-
-        <div class="chart-card">
-
-            <h3>Revenue by Category</h3>
-
-            <canvas id="categoryChart"></canvas>
-
+        <div class="result-box">
+            <h3>Revenue by Department</h3>
+            <div id="departmentRevenue"></div>
         </div>
 
-
-        <div class="chart-card">
-
-            <h3>Top 5 Products</h3>
-
-            <canvas id="productChart"></canvas>
-
+        <div class="result-box">
+            <h3>Revenue by Quarter</h3>
+            <div id="quarterRevenue"></div>
         </div>
 
-
-        <div class="chart-card">
-
-            <h3>Revenue by Sales Representative</h3>
-
-            <canvas id="representativeChart"></canvas>
-
+        <div class="result-box">
+            <h3>Top Products</h3>
+            <div id="topProducts"></div>
         </div>
-
-    </div>
-
-</section>
-```
-
-    <!-- CONTACT -->
-    ```html
-<!-- CHARTS SECTION -->
-<section id="charts" class="section charts-section">
-
-    <p class="section-label">
-        DATA VISUALIZATION
-    </p>
-
-    <h2>
-        Sales Insights
-    </h2>
-
-    <p class="section-description">
-        Interactive charts showing important patterns
-        and performance across the sales dataset.
-    </p>
-
-    <div class="charts-grid">
-
-        <!-- CATEGORY CHART -->
-        <div class="chart-card">
-
-            <h3>Revenue by Category</h3>
-
-            <canvas id="categoryChart"></canvas>
-
-        </div>
-
-
-        <!-- PRODUCT CHART -->
-        <div class="chart-card">
-
-            <h3>Top 5 Products</h3>
-
-            <canvas id="productChart"></canvas>
-
-        </div>
-
-
-        <!-- REPRESENTATIVE CHART -->
-        <div class="chart-card">
-
-            <h3>Revenue by Sales Representative</h3>
-
-            <canvas id="representativeChart"></canvas>
-
-        </div>
-
-    </div>
-
-</section>
-```
-
-    <section id="contact" class="section contact">
-
-        <p class="section-label">
-            CONTACT
-        </p>
-
-        <h2>
-            Let's Connect
-        </h2>
-
-        <p>
-            Interested in data analytics, business intelligence
-            and technology.
-        </p>
-
-        <a href="https://github.com/startupmail69-ship-it"
-           target="_blank"
-           class="btn primary">
-
-            Visit My GitHub
-
-        </a>
 
     </section>
 
+</main>
 
-    <!-- FOOTER -->
-    <footer>
+<footer>
+    <p>© 2026 Sales Data Analysis | Built by Roshan</p>
+</footer>
 
-        <p>
-            © 2026 Roshan | Sales Data Analysis
-        </p>
-
-    </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>
-</body>
-
-</html>
 ```
+
+</body>
+</html>
