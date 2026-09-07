@@ -1,11 +1,7 @@
-// ========================================
-// SALES DATA ANALYSIS DASHBOARD
-// ========================================
-
 fetch("sales-data.csv")
 .then(response => {
 if (!response.ok) {
-throw new Error("Could not load sales-data.csv");
+throw new Error("CSV file could not be loaded");
 }
 return response.text();
 })
@@ -13,73 +9,92 @@ return response.text();
 
 ```
     // Convert CSV into rows
-    const rows = csv.trim().split("\n");
+    const rows = csv.trim().split(/\r?\n/);
 
-    // Get headers
-    const headers = rows[0].split(",");
-
-    // Convert each row into an object
+    // Remove header row
     const data = rows.slice(1).map(row => {
 
         const values = row.split(",");
 
         return {
-            Department: values[0],
-            Quarter: values[1],
-            Revenue: Number(values[2]),
-            Product: values[3],
-            Customer: values[4],
-            Shipping_Mode: values[5],
-            Shipping_Delay: Number(values[6]),
-            Order_Status: values[7]
+            Department: values[0].trim(),
+            Quarter: values[1].trim(),
+            Revenue: Number(values[2].trim()),
+            Product: values[3].trim(),
+            Customer: values[4].trim(),
+            Shipping_Mode: values[5].trim(),
+            Shipping_Delay: Number(values[6].trim()),
+            Order_Status: values[7].trim()
         };
     });
 
-    // ========================================
-    // KPI CALCULATIONS
-    // ========================================
+    console.log("CSV loaded:", data);
 
-    // Total Revenue
+    // ==============================
+    // TOTAL REVENUE
+    // ==============================
+
     const totalRevenue = data.reduce(
-        (sum, item) => sum + item.Revenue,
+        (total, item) => total + item.Revenue,
         0
     );
 
-    // Total Orders
+    // ==============================
+    // TOTAL ORDERS
+    // ==============================
+
     const totalOrders = data.length;
 
-    // Unique Customers
-    const uniqueCustomers = new Set(
-        data.map(item => item.Customer)
-    ).size;
+    // ==============================
+    // COMPLETED ORDERS
+    // ==============================
 
-    // Average Shipping Delay
-    const averageDelay =
-        data.reduce(
-            (sum, item) => sum + item.Shipping_Delay,
-            0
-        ) / data.length;
-
-    // Completed Orders
     const completedOrders = data.filter(
         item => item.Order_Status === "Completed"
     ).length;
 
-    // Cancelled Orders
+    // ==============================
+    // CANCELLED ORDERS
+    // ==============================
+
     const cancelledOrders = data.filter(
         item => item.Order_Status === "Cancelled"
     ).length;
 
+    // ==============================
+    // UNIQUE CUSTOMERS
+    // ==============================
 
-    // ========================================
-    // DISPLAY KPI VALUES
-    // ========================================
+    const uniqueCustomers = new Set(
+        data.map(item => item.Customer)
+    ).size;
+
+    // ==============================
+    // AVERAGE SHIPPING DELAY
+    // ==============================
+
+    const totalDelay = data.reduce(
+        (total, item) => total + item.Shipping_Delay,
+        0
+    );
+
+    const averageDelay = totalDelay / data.length;
+
+    // ==============================
+    // DISPLAY KPI DATA
+    // ==============================
 
     document.getElementById("totalRevenue").textContent =
         "₹" + totalRevenue.toLocaleString("en-IN");
 
     document.getElementById("totalOrders").textContent =
         totalOrders;
+
+    document.getElementById("completedOrders").textContent =
+        completedOrders;
+
+    document.getElementById("cancelledOrders").textContent =
+        cancelledOrders;
 
     document.getElementById("uniqueCustomers").textContent =
         uniqueCustomers;
@@ -88,9 +103,9 @@ return response.text();
         averageDelay.toFixed(1) + " days";
 
 
-    // ========================================
+    // ==============================
     // REVENUE BY DEPARTMENT
-    // ========================================
+    // ==============================
 
     const departmentRevenue = {};
 
@@ -103,15 +118,15 @@ return response.text();
         departmentRevenue[item.Department] += item.Revenue;
     });
 
-    displayResults(
+    displayData(
         "departmentRevenue",
         departmentRevenue
     );
 
 
-    // ========================================
+    // ==============================
     // REVENUE BY QUARTER
-    // ========================================
+    // ==============================
 
     const quarterRevenue = {};
 
@@ -124,15 +139,15 @@ return response.text();
         quarterRevenue[item.Quarter] += item.Revenue;
     });
 
-    displayResults(
+    displayData(
         "quarterRevenue",
         quarterRevenue
     );
 
 
-    // ========================================
+    // ==============================
     // TOP PRODUCTS
-    // ========================================
+    // ==============================
 
     const productRevenue = {};
 
@@ -145,44 +160,29 @@ return response.text();
         productRevenue[item.Product] += item.Revenue;
     });
 
-    const topProducts =
-        Object.entries(productRevenue)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 5);
+    const sortedProducts = Object.entries(productRevenue)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
 
-    displayResults(
+    const topProducts = Object.fromEntries(sortedProducts);
+
+    displayData(
         "topProducts",
-        Object.fromEntries(topProducts)
+        topProducts
     );
-
-
-    // ========================================
-    // CONSOLE INFORMATION
-    // ========================================
-
-    console.log("Sales data loaded successfully!");
-    console.log("Total Revenue:", totalRevenue);
-    console.log("Total Orders:", totalOrders);
-    console.log("Unique Customers:", uniqueCustomers);
-    console.log("Average Shipping Delay:", averageDelay);
-    console.log("Completed Orders:", completedOrders);
-    console.log("Cancelled Orders:", cancelledOrders);
-    console.log("Revenue by Department:", departmentRevenue);
-    console.log("Revenue by Quarter:", quarterRevenue);
-    console.log("Top Products:", topProducts);
 
 })
 
 .catch(error => {
-    console.error("Error loading sales data:", error);
+    console.error("Error:", error);
 });
 ```
 
 // ========================================
-// DISPLAY RESULTS FUNCTION
+// DISPLAY DATA FUNCTION
 // ========================================
 
-function displayResults(elementId, results) {
+function displayData(elementId, data) {
 
 ```
 const container = document.getElementById(elementId);
@@ -193,18 +193,18 @@ if (!container) {
 
 container.innerHTML = "";
 
-Object.entries(results).forEach(([name, revenue]) => {
+Object.entries(data).forEach(([name, value]) => {
 
-    const item = document.createElement("div");
+    const div = document.createElement("div");
 
-    item.className = "analysis-item";
+    div.className = "analysis-item";
 
-    item.innerHTML = `
+    div.innerHTML = `
         <strong>${name}</strong>
-        <span>₹${revenue.toLocaleString("en-IN")}</span>
+        <span>₹${value.toLocaleString("en-IN")}</span>
     `;
 
-    container.appendChild(item);
+    container.appendChild(div);
 });
 ```
 
