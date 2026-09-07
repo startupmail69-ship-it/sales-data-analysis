@@ -54,26 +54,35 @@
 
     <section class="analysis">
 
-        <h2>📈 Sales Analysis</h2>
+        <section class="analysis">
 
-        <div class="result-box">
-            <h3>Revenue by Department</h3>
-            <div id="departmentRevenue"></div>
+    <h2>📈 Sales Analysis</h2>
+
+    <div class="chart-grid">
+
+        <div class="chart-box">
+            <h3>💰 Revenue by Department</h3>
+            <canvas id="departmentChart"></canvas>
         </div>
 
-        <div class="result-box">
-            <h3>Revenue by Quarter</h3>
-            <div id="quarterRevenue"></div>
+        <div class="chart-box">
+            <h3>📊 Revenue by Quarter</h3>
+            <canvas id="quarterChart"></canvas>
         </div>
 
-        <div class="result-box">
-            <h3>Top Products</h3>
-            <div id="topProducts"></div>
+        <div class="chart-box">
+            <h3>🏆 Top 5 Products</h3>
+            <canvas id="productChart"></canvas>
         </div>
 
-    </section>
+        <div class="chart-box">
+            <h3>📦 Order Status</h3>
+            <canvas id="statusChart"></canvas>
+        </div>
 
-</main>
+    </div>
+
+</section>
 
 <footer>
     <p>© 2026 Sales Data Analysis | Built by Roshan</p>
