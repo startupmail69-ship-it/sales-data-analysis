@@ -68,13 +68,16 @@ fetch("sales-data.csv")
 
 function applyFilters() {
 
-```
-const selectedDepartment =
-    document.getElementById("departmentFilter").value;
+function applyFilters() {
 
-const selectedQuarter =
-    document.getElementById("quarterFilter").value;
+    const selectedDepartment =
+        document.getElementById("departmentFilter").value;
 
+    const selectedQuarter =
+        document.getElementById("quarterFilter").value;
+
+    const selectedShipping =
+        document.getElementById("shippingFilter").value;
 
 const filteredData = salesData.filter(item => {
 
@@ -171,7 +174,9 @@ document.getElementById("cancelledOrders").textContent =
 
 document.getElementById("averageDelay").textContent =
     averageDelay.toFixed(1) + " days";
-
+document
+    .getElementById("shippingFilter")
+    .addEventListener("change", applyFilters);
 
 // ========================================
 // DEPARTMENT REVENUE
