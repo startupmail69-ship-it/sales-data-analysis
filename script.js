@@ -421,3 +421,25 @@ statusChart = new Chart(
 ```
 
 }
+function updateTable(data) {
+    const tableBody = document.getElementById("salesTableBody");
+
+    tableBody.innerHTML = "";
+
+    data.forEach(item => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${item.Department}</td>
+            <td>${item.Quarter}</td>
+            <td>₹${item.Revenue.toLocaleString("en-IN")}</td>
+            <td>${item.Product}</td>
+            <td>${item.Customer}</td>
+            <td>${item.Shipping_Mode}</td>
+            <td>${item.Shipping_Delay} days</td>
+            <td>${item.Order_Status}</td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+}
